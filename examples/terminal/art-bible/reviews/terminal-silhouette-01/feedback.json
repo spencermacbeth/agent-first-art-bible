@@ -1,0 +1,50 @@
+{
+  "pass": "terminal-silhouette-01",
+  "question": "What is the save-point terminal's architectural identity?",
+  "bibleRevision": "a1b2c3d",
+  "reviewedAt": "2026-10-02T09:40:00Z",
+  "reviewer": "owner",
+  "conditions": {
+    "display": "all candidates at 512 px on screen, matching the camera's intended size",
+    "overlay": "one-tile footprint, interaction side marked south",
+    "cameraElevation": "55 degrees, matching the game camera",
+    "derivatives": "512 px WebP shown; master hash displayed beside each"
+  },
+  "candidates": [
+    {
+      "id": "terminal-a",
+      "masterHash": "sha256:7c1e2b9a4f03…",
+      "reviewHash": "sha256:31d0a8…",
+      "rating": 4,
+      "keep": ["suspended silhouette", "asymmetric bracket", "hanging proportions"],
+      "change": ["polished metal is wrong; try a matte finish using the broad wear in ref-stone-02, without making it look carved from stone"],
+      "open": ["readability once the ground texture is underneath"],
+      "acceptance": { "scope": "concept-silhouette", "status": "accepted" }
+    },
+    {
+      "id": "terminal-b",
+      "masterHash": "sha256:0b44d1e7c2aa…",
+      "reviewHash": "sha256:9e7c44…",
+      "rating": 2,
+      "keep": [],
+      "change": [],
+      "open": [],
+      "note": "Disappears into the ground from this camera. Not what a save point needs.",
+      "acceptance": { "scope": null, "status": "not-selected" }
+    },
+    {
+      "id": "terminal-c",
+      "masterHash": "sha256:e9a17f30b6d5…",
+      "reviewHash": "sha256:5b21f0…",
+      "rating": 2,
+      "keep": ["translucent panels might come back for a different object"],
+      "change": [],
+      "open": [],
+      "note": "Reads as a flag, not a device.",
+      "acceptance": { "scope": null, "status": "not-selected" }
+    }
+  ],
+  "verbatim": "Keep terminal-a's suspended silhouette. Its polished metal is wrong. Try a matte finish using the broad wear in ref-stone-02, without making the object look carved from stone. Leave the hanging proportions alone.",
+  "agentRecommendation": "Hold terminal-a's silhouette fixed and run a material-only pass before any reconstruction.",
+  "notes": "Everything in this file is fictional. Hashes are placeholders."
+}

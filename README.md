@@ -1,52 +1,92 @@
 # Agent-first art bible
 
-Instructions, skills and templates for directing game art with coding agents. The process covers personal references, broad exploration, model comparison, review applications, runtime inspection and accepted decisions.
+Skills, prompts and templates for directing game art with coding agents.
 
-The package is written for a solo developer who wants the next agent session to understand what has already been chosen. You can use the Markdown directly with a coding tool that reads files. Automatic skill discovery depends on the tool; the instructions themselves do not require a particular harness, generation service, engine or web framework.
+The problem it solves: the next agent session, or the hundredth one running in parallel, has to find what has already been decided about the look of the game without you re-explaining it. An art bible written for agents records the references you chose, the properties you accepted, the scope of that acceptance and where the result gets inspected, so a new task starts from the current direction instead of from the project's history.
+
+This is the companion package to the article [Engineering an agent-first art bible](https://TODO-article-url), which explains the workflow and the reasoning behind it. The repository holds the reusable parts: four skills in the [Agent Skills](https://agentskills.io/specification) format, a directive for your project instructions, eight prompt fragments, a bible template and a worked example with every record filled in.
+
+Two terms come up throughout. A **seed** is a creative input the model interprets: an artist, a game, a drawing, a photograph, a recording, a description. It is distinct from the numeric seed some APIs expose. A **taste pass** is a review of candidate directions with an interface for recording what to keep and what to change.
+
+## How the article maps to the package
+
+| Article | Package |
+| --- | --- |
+| The art bible as a development resource · Keep the bible organized enough to use · Make reading it part of the agent's instructions | [art-bible-foundation](skills/art-bible-foundation/SKILL.md), its [bible template](skills/art-bible-foundation/assets/art-bible/README.md) and the [project directive](templates/AGENTS.art-direction.md) |
+| Start with maximally different directions · Treat model choice as an artistic variable · Connect the coding harness to generation APIs · Generate candidates and prepare them for inspection | [art-bible-explore](skills/art-bible-explore/SKILL.md) |
+| Make the feedback environment easy to use · Build a taste pass around the decisions · Iterate in the game | [art-bible-review](skills/art-bible-review/SKILL.md) |
+| Lock in the direction and distribute the work · Build a playable vertical slice and talk through it | [art-bible-lock](skills/art-bible-lock/SKILL.md) |
+| Prompt fragments for the next pass | [prompts.md](prompts.md) |
+
+## Skills
+
+| Skill | Use it for | Leaves behind |
+| --- | --- | --- |
+| [art-bible-foundation](skills/art-bible-foundation/SKILL.md) | Establishing or organizing the direction and reference library | A navigable bible, annotated references, the directive in your instructions and a task brief |
+| [art-bible-explore](skills/art-bible-explore/SKILL.md) | Comparing broad directions, models or a specific unresolved property | Distinct candidate briefs, bounded generation records and retained masters |
+| [art-bible-review](skills/art-bible-review/SKILL.md) | Building or repairing a taste pass and its rendering environment | Inspectable candidates, portable feedback and runtime evidence where the question needs it |
+| [art-bible-lock](skills/art-bible-lock/SKILL.md) | Applying feedback, recording an accepted baseline, distributing parallel tasks, turning a play session into tasks | Scoped decisions, an updated bible, pinned task briefs and a reproducible review target |
 
 ## Start in an existing project
 
-1. Copy the skill folders you need from [`skills/`](skills/) into your tool's supported skill location, or keep this repository beside your project and ask the agent to read a specific `SKILL.md`. Preserve each skill's supporting files.
-2. Merge the short [art-direction directive](templates/AGENTS.art-direction.md) into your project's existing instructions. Adjust the path to your art bible. Keep the other project instructions.
-3. Ask the agent to read [`art-bible-foundation`](skills/art-bible-foundation/SKILL.md), inspect your current assets and prepare the bible around one asset family. If an authoritative bible already exists, extend it.
-4. Use the other skills as the work requires them. A small revision does not need to repeat the whole process.
+1. Copy [`skills/art-bible-foundation/assets/art-bible/`](skills/art-bible-foundation/assets/art-bible/) to your project as `art-bible/` and fill in what you already know. If you already have a bible, keep it; the skills extend what exists.
+2. Merge the [art-direction directive](templates/AGENTS.art-direction.md) into your project's instruction file. Keep your other instructions. Adjust the path if your bible lives elsewhere.
+3. Install the skills where your harness looks for them. Paths checked against each tool's documentation in October 2026; they move, so verify against the tool you use.
+
+   | Harness | Project skills | Personal skills | Instruction file |
+   | --- | --- | --- | --- |
+   | Claude Code | `.claude/skills/<name>/SKILL.md` | `~/.claude/skills/<name>/SKILL.md` | `CLAUDE.md` |
+   | Codex | `.agents/skills/<name>/SKILL.md` | `~/.agents/skills/<name>/SKILL.md` | `AGENTS.md` |
+   | Cursor | `.cursor/skills/<name>/SKILL.md` or `.agents/skills/…` | `~/.cursor/skills/…` or `~/.agents/skills/…` | `AGENTS.md` or Cursor rules |
+   | Gemini CLI | `.gemini/skills/<name>/SKILL.md` or `.agents/skills/…` | `~/.gemini/skills/…` or `~/.agents/skills/…` | `GEMINI.md` |
+   | Others | See the [client list](https://agentskills.io/clients) for your tool's setup page | | |
+
+   Copy each skill folder whole; the `assets/` and `references/` inside it are part of the skill.
+4. Ask the agent to read `art-bible-foundation`, inspect your current assets and prepare the bible around one asset family. Then use the other skills as the work requires them; a small revision does not need to repeat the whole process.
 
 For a tool without skill discovery, a task can start with:
 
 ```text
 Read /path/to/agent-first-art-bible/skills/art-bible-explore/SKILL.md
 and use it for this task. The project is /path/to/my-game.
-The active art bible is docs/art/ART-BIBLE.md.
+The active art bible is art-bible/README.md.
 We are exploring the silhouette of the save-point terminal.
 Use the existing budget and provider permissions in the task brief.
 ```
 
-Replace the paths with your own. A file name alone does not prove that the harness loaded it: ask the agent to identify the current references and constraints before it starts.
+Whichever way it loads, check it did: before a generation pass, ask the agent which bible revision, references and constraints it is using. That is also how you catch an outdated portrait or a discarded direction before it becomes another batch.
 
-## Skills
+## The records the skills produce
 
-| Skill | Use it for | Leaves behind |
+Each record is shown filled in for a fictional save-point terminal in [`examples/terminal/`](examples/terminal/README.md); the [worked pass](examples/worked-pass.md) narrates the same pass.
+
+| Record | Template | Filled example |
 | --- | --- | --- |
-| [art-bible-foundation](skills/art-bible-foundation/SKILL.md) | Establishing or organizing the direction and reference library | A navigable bible, annotated references and a task brief |
-| [art-bible-explore](skills/art-bible-explore/SKILL.md) | Comparing broad directions, models or a specific unresolved property | Distinct candidate briefs, bounded generation records and retained masters |
-| [art-bible-review](skills/art-bible-review/SKILL.md) | Building or repairing a taste pass and its rendering environment | Inspectable candidates, portable feedback and relevant runtime evidence |
-| [art-bible-lock](skills/art-bible-lock/SKILL.md) | Applying feedback and recording an accepted baseline | Scoped decisions, updated instructions and a reproducible review target |
+| Bible entry point | [art-bible/README.md](skills/art-bible-foundation/assets/art-bible/README.md) | [example](examples/terminal/art-bible/README.md) |
+| Domain file with one entry per asset family | [visual-direction.md](skills/art-bible-foundation/assets/art-bible/visual-direction.md) | [example](examples/terminal/art-bible/visual-direction.md) |
+| Reference catalog | [references/CATALOG.md](skills/art-bible-foundation/assets/art-bible/references/CATALOG.md) | [example](examples/terminal/art-bible/references/CATALOG.md) |
+| Task brief | [asset-task.md](skills/art-bible-foundation/assets/asset-task.md) | [example](examples/terminal/art-bible/reviews/terminal-silhouette-01/task.md) |
+| Job and artifact record | [job-record.md](skills/art-bible-explore/references/job-record.md) | [example](examples/terminal/art-bible/reviews/terminal-silhouette-01/jobs.md) |
+| Feedback export | [feedback-contract.md](skills/art-bible-review/references/feedback-contract.md) | [example](examples/terminal/art-bible/reviews/terminal-silhouette-01/feedback.json) |
+| Decision record | [decision.md](skills/art-bible-lock/assets/decision.md) | [example](examples/terminal/art-bible/reviews/terminal-silhouette-01/decision-001.md) |
+| Project directive | [AGENTS.art-direction.md](templates/AGENTS.art-direction.md) | [example](examples/terminal/AGENTS.md) |
 
-[Prompt fragments](prompts.md) give concrete starting points. The [worked pass](examples/worked-pass.md) follows a fictional terminal asset through exploration, review and partial acceptance.
+The bible is ordinary Markdown. What matters is that candidates have stable identities, acceptance names its scope, originals stay separate from review derivatives, and superseded direction stays visible with its reason. A project-wide schema is optional.
 
-## What the package assumes
+## What this package will not do on its own
 
-The project chooses its own models, stack, budget and directory structure. Read the current provider documentation when implementing a generation adapter. Keep credentials in the process that calls the API; a browser review should receive media and non-secret metadata.
+It contains instructions and templates, not software: no provider adapters, no prebuilt viewer, no device-control service and no game assets. The review skill guides the agent in building or adapting those pieces inside your project. Installing these files generates nothing, spends nothing and deploys or publishes nothing. The skills work inside whatever authorization and budget your project already gives the agent and add none. Keep credentials in the process that calls the API; a browser review should receive media and non-secret metadata only.
 
-The package contains instructions and document templates. It does not bundle provider adapters, a prebuilt viewer or a device-control service. The review skill guides the coding agent in building or adapting those pieces to the actual project. No generation, paid request, device deployment or publication occurs merely by installing these files.
+The project chooses its own models, stack, budget and directory structure. Read the current provider documentation when implementing an adapter; provider details change faster than this package.
 
-The art bible can be ordinary Markdown. Stable candidate identities and explicit acceptance scope matter; a project-wide schema is optional. Preserve original outputs, store review derivatives separately, and make it clear whether feedback accepts a concept, a mesh, sound, motion or the integrated result.
+## Layout
 
-## Portability
-
-The skill folders use the [Agent Skills file format](https://agentskills.io/specification). [`AGENTS.md`](AGENTS.md) describes how to maintain this package; the separate [project directive template](templates/AGENTS.art-direction.md) is what you adapt for a game. The [AGENTS.md format](https://agents.md/) is supported by multiple coding tools. For a harness with another instruction mechanism, include the same directive there and link to the same authoritative bible.
-
-No automatic loading, provider compatibility or device control is assumed solely from a filename. Verify the behavior in the tool you use.
+- `skills/` — the four skills, each self-contained
+- `templates/AGENTS.art-direction.md` — the directive you adapt for a game
+- `prompts.md` — eight prompt fragments, one per task in the workflow
+- `examples/` — the narrated worked pass and the filled-in records
+- `AGENTS.md` — instructions for maintaining this package (not for your game)
+- `generated/` and `private/` are git-ignored so local experiments can sit beside the package without being committed
 
 ## License
 

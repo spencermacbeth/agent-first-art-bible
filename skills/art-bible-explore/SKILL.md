@@ -1,35 +1,51 @@
 ---
 name: art-bible-explore
-description: Design and execute bounded comparisons of artistic directions or generation models using a project's art bible. Use for early exploration or a specific unresolved property; preserve properties already accepted in a later refinement pass.
+description: Design and run bounded comparisons of artistic directions or generation models from a project's art bible. Use for early exploration of an asset, for a specific unresolved property, or to compare models on the same brief; later passes keep the properties already accepted.
 license: MIT
+metadata:
+  author: Spencer MacBeth
+  version: "0.2.0"
 ---
 
 # Explore distinct directions
 
-Read the current bible, task brief and relevant seed annotations. Identify the question being tested and the properties that must stay fixed.
+A pass answers one question. Early on, the question is "which of several quite different things should this be?"; later, "with the silhouette fixed, which material?". This skill designs the comparison, runs the authorized batch and hands the candidates to review with their records intact.
 
-## Choose the comparison
+Existing authorization and budget apply; this skill adds no permissions.
 
-Early exploration should vary substantial dimensions such as silhouette, composition, material, palette, movement or sound. Explain how each direction differs and why all still address the same asset role. Several cosmetic variants of the same interpretation do not establish a broad search.
+## 1. Read the question
 
-Later passes should preserve accepted properties and vary the unresolved ones. If the owner approved the silhouette, do not reopen it without a reason tied to the task or observed evidence.
+From the bible, the task brief and the reference annotations: what is being tested, what stays fixed, which bible revision the task reads from and where its outputs go.
 
-When the question is model choice, use representative project tasks and comparable review conditions. Record which controls differ across endpoints. A random seed or similarly named setting need not have equivalent semantics across models. If direction and model both vary, explain which conclusions the comparison can and cannot support.
+## 2. Design the comparison
 
-Prepare a compact matrix of candidate ID, artistic hypothesis, input reference IDs, provider/model, explicit parameters and review target. Adapt candidate count to the decision and budget; do not impose a universal batch size.
+**Early exploration** varies the dimensions that matter: silhouette, composition, material, palette, movement, sound. State how each candidate differs and why all of them still do the asset's job. Five cosmetic variations of one interpretation feel like a search but are not one; the owner ends up choosing between 5% differences without seeing the alternative that would have excited them more.
 
-## Run the authorized batch
+**Later passes** hold the accepted properties fixed and vary the unresolved ones. Reopen an accepted property only for a reason tied to the task or to evidence, and say so.
 
-Use existing provider permissions and budget without asking again. When cost or access is missing, complete the briefs and estimate before requesting the missing decision. Read current official endpoint documentation for formats, controls, costs and limits. Resolve unsupported parameters before submitting.
+**Model comparison** holds the brief and the review conditions constant and configures each model appropriately. If direction and model both vary in one batch, say which conclusions the result can support. Record which controls differ between endpoints; a parameter called `seed` on two models need not mean the same thing.
 
-Keep the API key in the calling process or secret store. Verify availability without printing the value. Do not put it in frontend code, manifests or feedback exports.
+Write the matrix before generating: candidate ID, hypothesis, input reference IDs, provider/model, explicit parameters, review target. Choose the candidate count from the decision and the budget; four is a common first batch, not a rule.
 
-Follow [the job and artifact record](references/job-record.md). Separate submission from collection for asynchronous jobs. Persist provider request IDs and reconcile uncertain submissions before retrying; a timeout is not proof of failure. Stop at the agreed batch or spending boundary. Do not continue generating until an attractive result appears without checking the remaining budget and review question.
+## 3. Run the batch
 
-Preserve originals and verify returned artifacts. A completed HTTP request does not establish that a downloaded file is a usable image, model, video or sound. Save inspectable errors and partial outcomes rather than silently replacing failed candidates.
+Use the permissions and budget the task brief states. If a cost or access decision is missing, finish the briefs and the estimate, then ask for the decision with those in hand.
 
-For image-to-3D workflows, obtain concept acceptance at the intended scope before using it for a costly reconstruction when that is the agreed process. Inspect the original model and any optimized derivative separately.
+Read the provider's current documentation for formats, controls, cost and limits, and resolve unsupported parameters before submitting. Keep the API key in the calling process or secret store; check that it is set without printing it, and keep it out of frontend code, manifests and feedback exports.
 
-## Hand off for review
+Record every job as described in [the job and artifact record](references/job-record.md). For queued providers, separate submission from collection and persist the provider's job ID before polling. Stop at the agreed batch or spending boundary; when results are unattractive, go back to the review question and the remaining budget rather than generating until something looks good.
 
-Supply the candidate matrix, stable local artifact paths, actual request settings, completed/failed/uncertain jobs and cost accounting with unknown costs identified. State what the comparison is intended to decide. Keep all candidates marked unaccepted until the owner's feedback establishes otherwise.
+Verify each returned artifact (decode the image, load the geometry, check the duration), keep the original, and save inspectable errors and partial results instead of silently replacing a failed candidate.
+
+For image-to-3D, obtain concept acceptance at the intended scope before spending on reconstruction, when that is the agreed process. Inspect the original model and any optimized derivative separately.
+
+## 4. Hand off
+
+Deliver the candidate matrix, stable local artifact paths and hashes, the request settings actually used, the completed, failed and uncertain jobs, and the cost with any unknowns marked. State what the comparison is meant to decide. Everything is unaccepted until the owner's feedback says otherwise.
+
+## Gotchas
+
+- A timeout is not a failure. Mark the record `submission-uncertain`, check the provider's job history, and only then resubmit; otherwise a paid request runs twice.
+- A 200 response is not a usable file. Decode it before recording success.
+- The numeric seed and the creative seed are different things. The catalog holds the second; the job record holds the first.
+- Providers change. A saved request may not reproduce the same output later, so the output is the record, not the request.

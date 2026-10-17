@@ -1,37 +1,65 @@
 ---
 name: art-bible-lock
-description: Apply taste-pass feedback and record a scoped accepted baseline in an art bible. Use when a review has selected properties or artifacts, when planning the next refinement, or when an established direction must be deliberately reopened.
+description: Apply taste-pass feedback, record a scoped accepted baseline in the art bible and carry it into the next tasks. Use when a review has selected properties or artifacts, when distributing work to parallel agents from a fixed bible revision, when turning a play session into follow-up tasks, or when a settled direction must be deliberately reopened.
 license: MIT
+metadata:
+  author: Spencer MacBeth
+  version: "0.2.0"
 ---
 
 # Record and carry forward a decision
 
-Read the active bible, actual reviewed artifacts, feedback and relevant technical evidence. Confirm that candidate identities and artifact revisions match. Use existing owner approval within its stated scope without asking for it again.
+A review is wasted if the next session cannot tell what was decided. This skill turns feedback into a decision with an explicit scope, updates the bible to exactly that scope and sets up the work that follows: one refinement pass, a set of parallel tasks or the follow-ups from a play session.
 
-## Interpret the decision precisely
+Existing authorization and budget apply; this skill adds no permissions.
 
-Separate explicit approval, requested edits, agent recommendations and open questions. If the owner accepts a silhouette and asks for different material, retain that silhouette and revise material. A high score or an unqualified file name is insufficient to infer production acceptance when the feedback is ambiguous.
+## 1. Interpret the decision precisely
 
-Use [the decision record](assets/decision.md) to state the accepted artifact and properties, scope, evidence, remaining issues and superseded instruction. Use only the headings that help the current task.
+Read the bible, the reviewed artifacts, the feedback and any technical evidence. Confirm candidate IDs and hashes match what was reviewed. Then separate four things: explicit approval, requested edits, agent recommendations and open questions. "Keep the silhouette, the metal is wrong" accepts the silhouette and reopens the material; it says nothing about geometry or runtime. A high score or a file named `final` is not production acceptance.
 
-## Apply the next iteration
+Fill in [the decision record](assets/decision.md): accepted artifact and properties; scope (reference, concept, geometry, material, motion, sound or integrated presentation); evidence and review conditions; required changes; superseded direction; the bible update. Use the headings that help.
 
-Locate the stage responsible for each problem before choosing the correction. Composition may require placement; shader or light choices may cause a performance issue; an edit boundary may cause an audio artifact. Regenerate source media when the evidence points there.
+## 2. Apply the next iteration
 
-Create new candidates for substantive changes. Preserve the accepted baseline and source masters. Carry forward the constraints the owner already chose. Recheck the affected rendering or playback conditions; do not describe a technical pass as artistic acceptance.
+Locate the stage responsible for each problem before choosing the fix: composition may be placement, a performance problem may be a shader or a light, an audio click may be an edit boundary. Regenerate source media when the evidence points there, and not otherwise.
 
-When feedback requests a revision without accepting it in advance, deliver the revised result for the relevant review. Continue independent implementation authorized by the feedback while specific artistic decisions remain open.
+Create new candidate IDs for substantive changes; the accepted baseline and its masters stay untouched. Carry the accepted constraints into the new brief. Recheck the affected rendering or playback conditions, and report a technical pass as a technical pass.
 
-## Update the active resource
+When feedback requests a revision without accepting it in advance, deliver the revision for review. Implementation the feedback already authorized can proceed while artistic decisions stay open.
 
-Update the authoritative bible to the scope actually accepted. Link the selected artifact, recipe and review evidence. Mark older contradictory guidance as superseded and preserve why it changed. Update the task-facing instruction pointer if the authoritative path moved; do not scatter duplicate rules across files.
+## 3. Update the bible to the accepted scope
 
-A concept may become an approved reference while its mesh or scene remains pending. Do not promote those other stages by implication. Likewise, a selected model's production derivative needs the relevant review before it can inherit acceptance.
+Write the accepted references, constraints, recipe link, review conditions and open questions into the entry. Move contradicted guidance to Superseded with the date, the reason and the replacement, so the dead end is not rediscovered and a new model can give a reason to revisit it. Add the decision to the README's current-decisions list. If the authoritative path moved, update the instruction pointer rather than duplicating the rule elsewhere.
 
-For a production baseline, identify the actual runtime asset paths and settings, and run the relevant asset, render or device checks. Follow the project's validation policy; documentation or art changes should not automatically trigger unrelated exhaustive gameplay simulations.
+A concept can be an approved reference while its mesh and scene stay pending; say so in the entry. A production derivative inherits nothing from its master until it has had its own review. For a production baseline, record the runtime asset paths and settings and run the asset, render or device checks the project defines for that.
 
-## Verify the handoff
+## 4. Distribute work from a fixed revision
 
-From the project's normal instruction entry point, check that a fresh task can find the current direction, accepted references, unresolved issues and the way to inspect a result. Resolve contradictory active guidance. Report what was accepted and what remains pending.
+Several agents can work from the bible at once if each knows which version it is reading and where to put its outputs. For each task:
 
-Reopen a settled decision when the owner requests it or new constraints/evidence justify a proposal. Preserve the prior baseline so the comparison and a return to it remain possible. Publication, paid generation and deployment still follow the task's existing authorization.
+- Pin the bible revision (commit hash) in the task brief.
+- Give the task its own `reviews/<pass>/` directory. Nothing it produces is current direction until a decision links it.
+- Route any change to shared direction (a character's design, a palette, a voice rule) through this skill before other tasks consume it.
+- When shared direction changes mid-flight, list the in-progress tasks that read the old revision and decide which to revise. Updating the document does not update work already started.
+- Size batches to what the owner can review. Automated checks remove missing files, broken models and over-budget outputs; the owner still chooses.
+
+## 5. Turn a play session into tasks
+
+Once enough pieces exist, the owner plays a vertical slice and says what they notice out loud. Given the recording or a timestamped transcript:
+
+- Make one task per observation. Each points at the moment in the recording, states what the owner experienced in their words and names what to investigate.
+- Keep the observation as the problem. "I can't tell whose turn it is" stays the problem; hierarchy, animation timing and a missing cue are hypotheses to check, not the fix.
+- Route each outcome: a change to the shared direction goes to the bible through a review; a local implementation fix stays with the task.
+- End with what the owner should play again to check each change.
+
+## 6. Verify the handoff
+
+From the project's instruction entry point, as a fresh session would, find the current direction, the accepted references, the open questions and the place to inspect a result. Resolve contradictory active guidance. Report what was accepted and what remains pending.
+
+Reopen a settled decision when the owner asks or new evidence justifies a proposal, keeping the prior baseline so the comparison and a return to it remain possible.
+
+## Gotchas
+
+- Scope creep by implication: liking a concept image does not approve the mesh built from it.
+- A bible change does not propagate to jobs already running from the previous revision.
+- The superseded section is not a graveyard. It is where the next model's reason to try again gets found.

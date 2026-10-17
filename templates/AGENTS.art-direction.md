@@ -1,19 +1,25 @@
 ## Art direction
 
-Before creating or changing art, sound, motion or their presentation, read
-`docs/art/ART-BIBLE.md` and the section relevant to the task. Follow its current
-accepted references and constraints. Identify missing or conflicting direction
-before treating a candidate as a production reference.
+Before creating or changing art, writing, interface, sound, motion or their
+presentation, read `art-bible/README.md` and the file it points to for the
+task: `world-and-writing.md`, `visual-direction.md`, `sound-and-music.md` or
+`interface.md`. Follow the accepted references and constraints there. If the
+direction you need is missing or contradicts itself, say so before treating any
+candidate as a production reference.
 
-Keep originals separate from optimized or normalized review derivatives. Record
-the actual model, settings, reference inputs and resulting artifact identities.
-Use the project's existing provider access and authorized budget.
+Before a substantial generation pass, state the bible revision, references and
+constraints you are using, so an outdated portrait or a discarded direction can
+be caught first.
 
-Review changes under the conditions defined for their use: game camera and
-lighting, output size, playback gain, interaction or target hardware as relevant.
-Preserve accepted properties when applying feedback. Update the bible only to
-the extent supported by the user's decision and observed evidence; distinguish
-concept approval from production acceptance.
+Keep originals separate from review and runtime derivatives. Record the model,
+settings, reference inputs and resulting artifact identities with every output.
+Use the project's existing provider access and budget.
 
-For a new task, state the relevant bible section, references, unresolved question
-and review target. A proposed departure remains an experiment until accepted.
+Review a change under the conditions of its use: the game camera and lighting,
+final display size, playback gain, interaction or target hardware. When applying
+feedback, keep the properties already accepted. Update the bible only as far as
+the owner's decision and observed evidence go, and keep concept approval
+separate from production acceptance.
+
+Put candidates, feedback and decisions under `art-bible/reviews/<pass>/`. A
+proposed departure stays an experiment until a decision there accepts it.
