@@ -1,6 +1,6 @@
 # Reviews
 
-One directory per pass, named `<family>-<question>-<nn>`. Each holds:
+If the project has no review layout, a directory per pass such as `<family>-<question>-<nn>` is a useful starting point. Keep only the records the pass needs; adapt filenames and storage to existing tools. For example:
 
 - `task.md` — the brief: question, fixed properties, bible revision, output location, budget, review target
 - `jobs.md` — job and artifact records: candidate, request, execution, output, derivative

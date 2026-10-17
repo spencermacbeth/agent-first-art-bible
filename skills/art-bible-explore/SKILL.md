@@ -4,7 +4,7 @@ description: Design and run bounded comparisons of artistic directions or genera
 license: MIT
 metadata:
   author: Spencer MacBeth
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Explore distinct directions
@@ -29,7 +29,7 @@ Write the matrix before generating: candidate ID, hypothesis, input reference ID
 
 ## 3. Run the batch
 
-Use the permissions and budget the task brief states. If a cost or access decision is missing, finish the briefs and the estimate, then ask for the decision with those in hand.
+Use the permissions and budget the task brief states. For shared paid work, identify this task’s allocation within the shared cap; do not treat the whole cap as each worker’s allowance. Pending and uncertain requests count against the allocation until reconciled. If a cost or access decision is missing, finish the briefs and the estimate, then ask for that decision.
 
 Read the provider's current documentation for formats, controls, cost and limits, and resolve unsupported parameters before submitting. Keep the API key in the calling process or secret store; check that it is set without printing it, and keep it out of frontend code, manifests and feedback exports.
 
@@ -43,9 +43,11 @@ For image-to-3D, obtain concept acceptance at the intended scope before spending
 
 Deliver the candidate matrix, stable local artifact paths and hashes, the request settings actually used, the completed, failed and uncertain jobs, and the cost with any unknowns marked. State what the comparison is meant to decide. Everything is unaccepted until the owner's feedback says otherwise.
 
+For copyable starting requests, see [exploration and model-connection prompts](references/prompts.md).
+
 ## Gotchas
 
-- A timeout is not a failure. Mark the record `submission-uncertain`, check the provider's job history, and only then resubmit; otherwise a paid request runs twice.
+- A timeout or empty job-history lookup does not prove non-acceptance. Keep the request `submission-uncertain` until reconciled. Retry only through the provider’s documented idempotency mechanism or after confirming the original was not accepted; otherwise another charge needs an explicit decision.
 - A 200 response is not a usable file. Decode it before recording success.
 - The numeric seed and the creative seed are different things. The catalog holds the second; the job record holds the first.
 - Providers change. A saved request may not reproduce the same output later, so the output is the record, not the request.

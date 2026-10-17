@@ -6,6 +6,6 @@ How the player encounters the world: typography, color roles, spacing, panel hie
 
 ## Entries
 
-One entry per surface: battle HUD, menus, card detail, map, dialogs. Use the five headings from [visual-direction.md](visual-direction.md). Review in context, at the real size, with real text lengths; hierarchy and interaction change the result. Include the project's accessibility and reduced-motion requirements as constraints.
+One entry per surface: battle HUD, menus, card detail, map, dialogs. Adapt the five headings from [visual-direction.md](visual-direction.md). Review in context, at the real size, with real text lengths; hierarchy and interaction change the result. Include the project's accessibility and reduced-motion requirements as constraints.
 
 ## Superseded

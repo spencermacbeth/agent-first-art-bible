@@ -6,7 +6,7 @@ What does this asset do in the game, and which artistic or technical question sh
 
 ## Authority and inputs
 
-- Bible revision: the commit hash or dated snapshot this task reads from
+- Bible revision: a commit hash, dated snapshot or equivalent stable revision this task reads from
 - Bible section:
 - Accepted reference IDs and original media:
 - Current asset, if this is a revision:
@@ -17,11 +17,13 @@ The properties already accepted, the properties that may change, and the technic
 
 ## Generation access and budget
 
-Permitted provider/model choices, credential environment-variable names, authorized total cost and batch bounds, and the authorization already given. With no paid generation authorized, the pass ends at briefs and estimates.
+Permitted provider/model choices, credential environment-variable names, authorized cost and batch bounds, and the authorization already given. With no paid generation authorized, the pass ends at briefs and estimates.
+
+For parallel paid work, identify the shared authorization and this task’s exclusive allocation, or the project’s existing reservation process. Allocations together must fit the shared cap; pending and uncertain requests remain allocated until reconciled. Omit this detail for work that does not share a spending cap.
 
 ## Output location
 
-The `reviews/<pass>/` directory for this task's candidates, derivatives, records and feedback. Nothing in it is current direction until a decision links it from the bible.
+The project’s location for this task’s candidates, derivatives, records and feedback, for example `reviews/<pass>/`. Nothing in it is current direction until a decision links it from the bible.
 
 ## Review target
 

@@ -22,6 +22,7 @@ Explore: silhouette, spatial structure, material family, atmosphere.
 - Provider/model: `example-provider` / `example-image-model` (fictional)
 - Credentials: `EXAMPLE_PROVIDER_API_KEY` in the environment; check presence, never print it
 - Authorized: concept images only, up to 6 images, 2.00 total, approved by the owner on 2026-09-27
+- Shared authorization: `terminal-concepts-20260927`, 2.00 total; this task has the full 2.00 allocation and no other worker shares it. Pending or uncertain submissions remain allocated until reconciled.
 - Not authorized: reconstruction, device deployment
 
 ## Output location

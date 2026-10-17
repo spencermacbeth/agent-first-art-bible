@@ -6,7 +6,7 @@ The visual properties that carry the game across every asset family: composition
 
 ## Entries
 
-One entry per asset family: a character, an environment module, a prop class, a card frame. Use these five headings for every entry so a new session knows what it may change and where to look at the result.
+One entry per asset family: a character, an environment module, a prop class, a card frame. Adapt these five headings so a new session knows what it may change and where to look at the result.
 
 ### Family name
 

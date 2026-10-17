@@ -12,7 +12,7 @@ Total 0.96 of 2.00 authorized. Three further images were authorized and not used
 
 ## Reconciliation note, terminal-c
 
-The submit call for `terminal-c` timed out after 30 seconds with no response body. The pending record was marked `submission-uncertain` rather than retried. The provider's job history showed `job_01HX…C` accepted at 14:03:11, so the job was collected on the next run without a second charge. Had the history shown no job, the record would have been resubmitted and the uncertainty noted here.
+The submit call for `terminal-c` timed out after 30 seconds with no response body. The pending record was marked `submission-uncertain` rather than retried. The provider's job history showed `job_01HX…C` accepted at 14:03:11, so the job was collected on the next run without a second charge. Had the lookup returned no matching job, the request would have remained `submission-uncertain`, with its estimated 0.32 still allocated. A missing history entry alone would not authorize another submission. Retry would require confirmed non-acceptance or the provider’s documented idempotent mechanism; unresolved risk of a second charge would need an explicit decision.
 
 ## Collection checks
 

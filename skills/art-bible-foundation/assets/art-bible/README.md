@@ -2,6 +2,8 @@
 
 Status: template. Replace this line with one sentence on what the game is and the experience its art serves.
 
+The layout and headings are defaults: combine or omit files for the project and keep an existing bible when it already works.
+
 ## Start here
 
 | If the task changes… | Read |
@@ -11,7 +13,7 @@ Status: template. Replace this line with one sentence on what the game is and th
 | Music, sound effects, the mix | [sound-and-music.md](sound-and-music.md) |
 | Menus, HUD, typography, color roles, interaction | [interface.md](interface.md) |
 
-Before generating anything, state the bible revision (commit hash), the references and the constraints you are using.
+Before generating anything, state the bible revision (commit hash, dated snapshot or equivalent), the references and the constraints you are using.
 
 ## Identity
 
@@ -29,7 +31,7 @@ What is unresolved and which pass is meant to resolve it.
 
 ## Conventions
 
-- Every entry uses the five headings described in [visual-direction.md](visual-direction.md), whatever the domain.
+- Adapt the five headings described in [visual-direction.md](visual-direction.md) to the domain and existing project format.
 - References are catalogued in [references/CATALOG.md](references/CATALOG.md). Presence in the catalog is not acceptance.
 - Each pass lives in `reviews/<pass>/` with its task brief, job records, candidates, feedback export and decision records. See [reviews/README.md](reviews/README.md).
-- Superseded direction stays in its file, dated, with the reason and the replacement.
+- Keep superseded direction in its file or a linked history, dated, with the reason and replacement.

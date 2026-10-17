@@ -4,7 +4,7 @@ description: Establish or organize an art bible and annotated reference library 
 license: MIT
 metadata:
   author: Spencer MacBeth
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Establish the art bible
@@ -19,7 +19,7 @@ Read the project instructions and any existing art, writing, sound or interface 
 
 ## 2. Lay out the bible
 
-Copy [the template](assets/art-bible/README.md) when the project has no coherent entry point; adapt its headings rather than inventing a schema. The layout:
+Use [the template](assets/art-bible/README.md) when the project needs an entry point. Keep an existing structure when it works; combine or omit domain files and adapt the headings to the project. One possible layout:
 
 ```text
 art-bible/
@@ -32,9 +32,9 @@ art-bible/
   reviews/                  # Candidates, feedback and decisions
 ```
 
-Every entry, whatever the domain, carries the same five headings: identity and function; accepted references; constraints and exclusions; production and rendering recipe; review conditions and remaining questions. A new session reads one entry and knows what it may change and where to inspect the result.
+An entry should let a new session find its purpose, accepted references, constraints, production recipe and review conditions. The template’s five headings are one way to do that; use the project’s own format if those relationships are already clear.
 
-Keep the active bible short. Job records, feedback and decisions live under `reviews/<pass>/` beside the candidates, and the entry links to them. Rejected and replaced directions stay in the file under "Superseded", dated, with the reason and a pointer to the replacement, so nobody rediscovers a dead end and a new model can give a reason to revisit one.
+Keep the active bible short. Link to job records, feedback and decisions wherever the project keeps them; `reviews/<pass>/` is a useful default. Retain rejected and replaced directions under "Superseded" or in a linked history, with the reason and a pointer to the replacement, so nobody rediscovers a dead end and a new model can give a reason to revisit one.
 
 ## 3. Annotate the references
 
@@ -50,13 +50,15 @@ Fill in [the task brief](assets/asset-task.md): the question this pass should an
 
 ## 5. Put the bible on the agent's path
 
-Merge a short pointer into the project's instruction file (`AGENTS.md`, `CLAUDE.md` or the equivalent), leaving the other instructions as they are. The pointer names the bible's entry point, says which file governs which kind of change, and asks the agent to state the bible revision, references and constraints before a generation pass. The package's `templates/AGENTS.art-direction.md` is a ready-made version.
+Merge a short pointer into the project's instruction file (`AGENTS.md`, `CLAUDE.md` or the equivalent), leaving the other instructions as they are. The pointer names the bible's entry point, says which file governs which kind of change, and asks the agent to state the bible revision, references and constraints before a generation pass. Adapt [the bundled directive](assets/AGENTS.art-direction.md) if useful.
 
 Then check it works: from a fresh session, ask for the current references and constraints for one asset family. Automatic skill loading varies by harness; the pointer in the instruction file does not.
 
 ## Deliver
 
-The bible entry point, the annotated reference paths, the directive in the instruction file and one concrete next task, with proposed direction visibly separate from accepted direction. The owner starts the first paid pass; the brief ends with a question and a budget, not a batch.
+The bible entry point, the annotated reference paths, the directive in the instruction file and one concrete next task, with proposed direction visibly separate from accepted direction. This skill prepares the next pass; it does not run generation. Carry existing authorization into the brief without asking for it again.
+
+For a copyable starting request, see [the foundation prompt](references/prompts.md).
 
 ## Gotchas
 
